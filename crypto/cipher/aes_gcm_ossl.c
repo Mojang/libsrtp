@@ -60,6 +60,11 @@ srtp_debug_module_t srtp_mod_aes_gcm = {
     "aes gcm" /* printable module name       */
 };
 
+// NETHERNET: added to compile
+extern const srtp_cipher_type_t srtp_aes_gcm_128;
+extern const srtp_cipher_type_t srtp_aes_gcm_256;
+
+
 /*
  * For now we only support 8 and 16 octet tags.  The spec allows for
  * optional 12 byte tag, which may be supported in the future.

@@ -67,6 +67,9 @@
 #include <winsock2.h>
 #endif
 
+// NETHERNET: added to compile
+#define PRIx64 "llx"
+
 /* the debug module for srtp */
 srtp_debug_module_t mod_srtp = {
     0,     /* debugging is off by default */

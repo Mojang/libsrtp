@@ -64,7 +64,10 @@ srtp_debug_module_t srtp_mod_aes_icm = {
     "aes icm ossl" /* printable module name       */
 };
 
-/*
+// NETHERNET: added to compile
+extern const srtp_cipher_type_t srtp_aes_icm_192;
+
+    /*
  * integer counter mode works as follows:
  *
  * 16 bits
