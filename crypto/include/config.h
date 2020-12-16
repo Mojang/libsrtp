@@ -54,7 +54,7 @@
 #define HAVE_MEMORY_H 1
 
 /* Define to 1 if you have the <netinet/in.h> header file. */
-#undef HAVE_NETINET_IN_H
+//#undef HAVE_NETINET_IN_H
 
 /* Define to 1 if you have the `socket' function. */
 #define HAVE_SOCKET 1
@@ -96,7 +96,8 @@
 #undef HAVE_UINT32_T
 
 /* Define to 1 if the system has the type `uint64_t'. */
-#undef HAVE_UINT64_T
+//#undef HAVE_UINT64_T
+//#define HAVE_UINT64_T 1 // NETHERNET: cmake handling this
 
 /* Define to 1 if the system has the type `uint8_t'. */
 #undef HAVE_UINT8_T
@@ -108,10 +109,13 @@
 #define HAVE_USLEEP 1
 
 /* Define to 1 if you have the <windows.h> header file. */
-#define HAVE_WINDOWS_H 1
+//#define HAVE_WINDOWS_H 1 //
 
 /* Define to 1 if you have the <winsock2.h> header file. */
-#define HAVE_WINSOCK2_H 1
+//#define HAVE_WINSOCK2_H 1 // NETHERNET: cmake handling this
+
+// RSANCHEZ: hacked in to test android
+//#define HAVE_NETINET_IN_H 1
 
 /* Define to use X86 inlined assembly code */
 #undef HAVE_X86
