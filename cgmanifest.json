@@ -1,0 +1,14 @@
+{
+    "Registrations":[ 
+        {
+            "component": { 
+                "type": "git", 
+                "git": { 
+                "repositoryUrl": "https://github.com/cisco/libsrtp.git", 
+                "commitHash": "358dc7b23ffa2cf630bf1bcc721e38e402eae754" 
+                }
+            }
+        }
+    ],
+    "Version": 1
+}
