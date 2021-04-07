@@ -67,7 +67,11 @@
 #include <winsock2.h>
 #endif
 
-// NETHERNET: added to compile
+#if defined(WEBRTC_SWITCH)
+#include "posix_nx.h"
+#endif
+
+// NETHERNET: added to compile, revisit
 #define PRIx64 "llx"
 
 /* the debug module for srtp */

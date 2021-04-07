@@ -58,6 +58,12 @@
 #include <netinet/in.h>
 #elif defined HAVE_WINSOCK2_H
 #include <winsock2.h>
+#elif WEBRTC_SWITCH
+#include <nn/socket.h>
+#include "posix_nx.h"
+#include <stdlib.h>
+#elif WEBRTC_ORBIS
+#include "posix_orbis.h"
 #else
 #error "Platform not recognized"
 #endif
