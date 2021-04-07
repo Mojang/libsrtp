@@ -155,8 +155,8 @@ void aes_decrypt_with_raw_key(void *ciphertext, const void *key, int key_len)
     // FIXME: need to get this working through the crypto module interface
     srtp_aes_expanded_key_t expanded_key;
 
-    srtp_aes_expand_decryption_key(key, key_len, &expanded_key);
-    srtp_aes_decrypt(ciphertext, &expanded_key);
+    srtp_aes_expand_decryption_key((const uint8_t*)key, key_len, &expanded_key);
+    srtp_aes_decrypt((v128_t*) ciphertext, &expanded_key);
 #endif
 }
 
@@ -178,14 +178,15 @@ srtp_err_status_t srtp_stream_init_from_ekt(srtp_stream_t stream,
      * NOTE: at present, we only support a single ekt_policy at a time.
      */
     if (stream->ekt->data->spi !=
-        srtcp_packet_get_ekt_spi(srtcp_hdr, pkt_octet_len))
+        srtcp_packet_get_ekt_spi((const uint8_t *)srtcp_hdr, pkt_octet_len))
         return srtp_err_status_no_ctx;
 
     if (stream->ekt->data->ekt_cipher_type != SRTP_EKT_CIPHER_AES_128_ECB)
         return srtp_err_status_bad_param;
 
     /* decrypt the Encrypted Master Key field */
-    master_key = srtcp_packet_get_emk_location(srtcp_hdr, pkt_octet_len);
+    master_key = srtcp_packet_get_emk_location((const uint8_t *)srtcp_hdr,
+                                               pkt_octet_len);
     /* FIX!? This decrypts the master key in-place, and never uses it */
     /* FIX!? It's also passing to ekt_dec_key (which is an aes_expanded_key_t)
      * to a function which expects a raw (unexpanded) key */
@@ -193,7 +194,7 @@ srtp_err_status_t srtp_stream_init_from_ekt(srtp_stream_t stream,
                              &stream->ekt->data->ekt_dec_key, 16);
 
     /* set the SRTP ROC */
-    roc = srtcp_packet_get_ekt_roc(srtcp_hdr, pkt_octet_len);
+    roc = srtcp_packet_get_ekt_roc((const uint8_t *)srtcp_hdr, pkt_octet_len);
     err = srtp_rdbx_set_roc(&stream->rtp_rdbx, roc);
     if (err)
         return err;

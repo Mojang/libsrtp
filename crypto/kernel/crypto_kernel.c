@@ -509,7 +509,7 @@ srtp_err_status_t srtp_crypto_kernel_alloc_auth(srtp_auth_type_id_t id,
 srtp_err_status_t srtp_crypto_kernel_load_debug_module(
     srtp_debug_module_t *new_dm)
 {
-    srtp_kernel_debug_module_t *kdm, *new;
+    srtp_kernel_debug_module_t *kdm, *newalloc;
 
     /* defensive coding */
     if (new_dm == NULL || new_dm->name == NULL) {
@@ -527,18 +527,18 @@ srtp_err_status_t srtp_crypto_kernel_load_debug_module(
 
     /* put new_dm at the head of the list */
     /* allocate memory */
-    new = (srtp_kernel_debug_module_t *)srtp_crypto_alloc(
+    newalloc = (srtp_kernel_debug_module_t *)srtp_crypto_alloc(
         sizeof(srtp_kernel_debug_module_t));
-    if (new == NULL) {
+    if (newalloc == NULL) {
         return srtp_err_status_alloc_fail;
     }
 
     /* set fields */
-    new->mod = new_dm;
-    new->next = crypto_kernel.debug_module_list;
+    newalloc->mod = new_dm;
+    newalloc->next = crypto_kernel.debug_module_list;
 
     /* set head of list to new cipher type */
-    crypto_kernel.debug_module_list = new;
+    crypto_kernel.debug_module_list = newalloc;
 
     return srtp_err_status_ok;
 }

@@ -94,7 +94,7 @@ srtp_err_status_t srtp_cipher_set_iv(srtp_cipher_t *c,
         return (srtp_err_status_bad_param);
     }
 
-    return (((c)->type)->set_iv(((c)->state), iv, direction));
+    return (((c)->type)->set_iv(((c)->state), iv, (srtp_cipher_direction_t)direction));
 }
 
 srtp_err_status_t srtp_cipher_output(srtp_cipher_t *c,
