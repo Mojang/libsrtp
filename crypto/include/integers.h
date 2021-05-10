@@ -75,7 +75,7 @@ extern "C" {
 #if SIZEOF_UNSIGNED_LONG == 8
 typedef unsigned long uint64_t;
 #elif SIZEOF_UNSIGNED_LONG_LONG == 8
-#if !defined(WEBRTC_ORBIS)
+#if !defined(WEBRTC_ORBIS) && !defined(WEBRTC_SWITCH)
 typedef unsigned long long uint64_t; 
 #endif
 #else

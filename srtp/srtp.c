@@ -500,6 +500,7 @@ srtp_err_status_t srtp_stream_clone(const srtp_stream_ctx_t *stream_template,
             session_keys->mki_id = NULL;
         } else {
             session_keys->mki_id =
+                (uint8_t*)
                 srtp_crypto_alloc(template_session_keys->mki_size);
 
             if (session_keys->mki_id == NULL) {
@@ -900,7 +901,7 @@ srtp_err_status_t srtp_stream_init_keys(srtp_stream_ctx_t *srtp,
 #endif
 
     if (master_key->mki_size != 0) {
-        session_keys->mki_id = srtp_crypto_alloc(master_key->mki_size);
+        session_keys->mki_id = (uint8_t*)srtp_crypto_alloc(master_key->mki_size);
 
         if (session_keys->mki_id == NULL) {
             return srtp_err_status_init_fail;
