@@ -47,6 +47,11 @@
 
 #include "datatypes.h"
 
+#if defined(WEBRTC_SWITCH)
+#include <stdlib.h>
+#endif
+
+
 #ifdef __cplusplus
 extern "C" {
 #endif
